@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arrow Function</title>
+</head>
+<body>
+
+<script>
+
+  // ----------------------------------------
+  // 验证Arrow Function中的this
+  // ----------------------------------------
+
+  (function() {
+
+    class NumberCollection {
+
+      constructor() {
+        this.nums = [1, 2, 3];
+        this.maximum = 0;
+      }
+
+      getMaximum() {
+
+        // 使用箭头函数
+        // 箭头函数的this，是定义箭头函数的位置所决定的，不会改变
+        this.nums.forEach(num => {
+          if (num > this.maximum) {
+            this.maximum = num;
+          }
+        });
+
+        // 使用匿名函数
+        // 报错：this是undefined
+        // 函数中的this是由执行的位置决定的？？？
+        // this.nums.forEach(function(num) {
+        //   if (num > this.maximum) {
+        //     this.maximum = num;
+        //   }
+        // });
+
+        return this.maximum;
+      }
+    }
+
+    const nc = new NumberCollection();
+    const max = nc.getMaximum();
+    console.log(max);
+
+  })();
+
+
+
+</script>
+
+
+</body>
+</html>

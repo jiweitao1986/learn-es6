@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.keys()</title>
+</head>
+<body>
+
+<script>
+
+  //--------------------------------------------------------------------------------
+  // 验证返回顺序
+  //--------------------------------------------------------------------------------
+
+  // (function() {
+  //   const emps = {
+  //     'dadfaabbbbb': {id:'dadfaabbbbb', name: '刘一'},
+  //     'erwefd': {id:'erwefd', name: '陈二'},
+  //     'jkkadlsfj': {id:'jkkadlsfj', name: '张三'},
+  //     '2dadfoaaaaa': {id:'2dadfoaaaaa', name: '李四'}
+  //   };
+  //
+  //   const keys = Object.keys(emps);
+  //   console.log(keys);
+  //
+  //   const values = Object.values(emps);
+  //   console.log(values);
+  //
+  // })();
+
+
+  //--------------------------------------------------------------------------------
+  // 验证原型链上的属性
+  //--------------------------------------------------------------------------------
+
+  // (function() {
+  //     class Animal {
+  //         constructor(age) {
+  //             this.age = age;
+  //         }
+  //     }
+  //
+  //     class Bird extends Animal{
+  //         constructor(age, wings) {
+  //             super(age);
+  //             this.wings = wings;
+  //         }
+  //     }
+  //
+  //     const bird = new Bird(20, 2);
+  //     const keys = Object.keys(bird);
+  //     console.log(keys);
+  //
+  //
+  // })();
+
+
+  //--------------------------------------------------------------------------------
+  // 验证通过defineProperty方法加上去的属性能否被遍历出
+  //--------------------------------------------------------------------------------
+  (function() {
+
+    class Identity {
+      constructor() {
+        this.no = '3333333';
+        this.expiredDate = '2017';
+      }
+    }
+
+    class Person {
+      constructor(name)   {
+        this.name = name;
+
+        Object.defineProperty(this, 'name', {
+          value: [1, 2, 3]
+        });
+
+        Object.defineProperty(this, 'age', {
+          value: 33,
+          enumerable: true
+        });
+      }
+
+      breathe() {
+        console.log('breathing ...');
+      }
+
+      showProperties() {
+
+      }
+    }
+
+    const person = new Person('ZhangSan');
+    Object.keys(person).forEach((propName) => {
+      console.log(propName + '=' + person[propName]);
+    })
+
+    console.log(person.age);
+
+  })();
+
+</script>
+
+</body>
+</html>

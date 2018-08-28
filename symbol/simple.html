@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol</title>
+</head>
+<body>
+
+
+<script>
+    (function() {
+
+        const obj = {};
+
+        let foo = Symbol("foo");
+
+        Object.defineProperty(obj, foo, {
+            value: "foobar",
+        });
+
+        for (let i in obj) {
+            console.log(i); // 无输出
+        }
+
+        console.log(Object.getOwnPropertyNames(obj));
+        // []
+
+        let symbols = Object.getOwnPropertySymbols(obj);
+        symbols.forEach(s => {
+            console.log(obj[s]);
+        })
+
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

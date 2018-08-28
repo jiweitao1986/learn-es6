@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Initializer</title>
+</head>
+<body>
+
+<script>
+
+    //
+    const name = 'ZhangSan';
+    const age = 33;
+    var person = {name, age};
+    console.log(person);
+
+
+    //
+    const { name: liSiName, age: liSiAge } = {
+        name: 'LiSi', age: 44
+    };
+    console.log(liSiName);
+    console.log(liSiAge);
+
+
+    function getFullName([firstName, lastName]) {
+        console.log(firstName);
+        console.log(lastName);
+    }
+
+    getFullName(['San', 'Zhang']);
+
+
+</script>
+
+
+</body>
+</html>

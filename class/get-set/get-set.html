@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getter Setter</title>
+</head>
+<body>
+
+<script>
+    class Person {
+        constructor(firstName, lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        get fullName() {
+            return this.firstName + ' ' + this.lastName;
+        }
+
+        set fullName(value) {
+            let arr = value.split(' ');
+            this.firstName = arr[0];
+            this.lastName = arr[1];
+        }
+    }
+
+    var zhangSan = new Person('张', '三');
+    console.log(zhangSan.fullName);
+
+    zhangSan.fullName = '张 小三';
+    console.log(zhangSan.lastName);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple</title>
+</head>
+<body>
+
+<dt>
+    <dt>Reflect</dt>
+    <dd>https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect</dd>
+</dt>
+
+
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        intro() {
+            console.log('I\' ' + name + ', I\'m ' + age + 'years old.');
+        }
+
+        eat() {
+
+        }
+
+        speek(words) {
+            console.log('eat: ' + words)
+        }
+    }
+
+
+
+    console.log('\n\n----------construct----------');
+    // constructor
+    const zhangSan = new Person('ZhangSan', 33);
+    console.log(zhangSan);
+
+    //Reflect
+    const liSi = Reflect.construct(Person, ['LiSi', 44]);
+    console.log(liSi);
+
+
+
+    console.log('\n\n----------has----------');
+    if (Reflect.has(zhangSan, 'name')) {
+        console.log('name exists');
+    }
+
+    if (Reflect.has(zhangSan, 'speek')) {
+        console.log('speek() exists');
+    }
+
+
+    console.log('\n\n----------get----------');
+    console.log(Reflect.get(zhangSan, 'name'));
+    console.log(Reflect.get(zhangSan, 'speek'));
+
+
+    console.log('\n\n----------set----------');
+    Reflect.set(zhangSan, 'name', 'ZS');
+    console.log(zhangSan.name);
+
+    //函数也可以替换掉
+    Reflect.set(zhangSan, 'speek', function(words) {
+        console.log('new speek method: ' + words);
+    });
+    zhangSan.speek('hello')
+
+    console.log('\n\n----------defineProperty----------');
+    Reflect.defineProperty(
+        zhangSan,
+        'gender',
+        { configurable: true, enumerable: true, writable: true, value: 'male' }
+    );
+    console.log(zhangSan);
+
+    console.log('\n\n----------deleteProperty----------');
+    Reflect.deleteProperty(zhangSan, 'gender');
+    console.log(zhangSan);
+
+
+    console.log('\n\n----------getOwnPropertyDescriptor----------');
+    const genderDescriptor = Reflect.getOwnPropertyDescriptor(zhangSan, 'speek');
+    console.log(genderDescriptor);
+
+    console.log('\n\n----------ownKeys----------');
+    // 方法不包括在内，除非是使用set方法设置的
+    const ownKeys = Reflect.ownKeys(zhangSan);
+    console.log(ownKeys);
+
+
+
+    console.log('\n\n----------getPrototypeOf----------');
+
+    console.log('\n\n----------setPrototypeOf----------');
+
+
+</script>
+
+</body>
+</html>

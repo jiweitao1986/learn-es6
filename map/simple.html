@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Map Demo</title>
+</head>
+<body>
+
+<script>
+    let simpleMap = new Map([
+        ['LiuYi',  '刘一'],
+        ['ChenEr', '陈二'],
+    ]);
+    simpleMap.set('ZhangSan', '张三');
+    simpleMap.set('LiSi', '李四');
+
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // LiuYi
+    // ChenEr
+    // ZhangSan
+    // LiSi
+    console.log('//////////for of map keys//////////');
+    for (let item of simpleMap.keys()) {
+        console.log(item);
+    }
+
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // 刘一
+    // 陈二
+    // 张三
+    // 李四
+    ////////////////////////////////////////
+    console.log('//////////for of map values//////////');
+    for (let item of simpleMap.values()) {
+        console.log(item);
+    }
+
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // LiuYi: 刘一
+    // ChenEr: 陈二
+    // ZhangSan: 张三
+    // LiSi: 李四
+    ////////////////////////////////////////
+    console.log('//////////for of map entries//////////');
+    for (let item of simpleMap.entries()) {
+        console.log(item[0] + ': ' + item[1]);
+    }
+
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // 刘一
+    // 陈二
+    // 张三
+    // 李四
+    ////////////////////////////////////////
+    console.log('//////////map forEach//////////');
+    simpleMap.forEach(function(item) {
+        console.log(item);
+    });
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // 王五
+    // 5
+    ////////////////////////////////////////
+    console.log('//////////add WangWu//////////');
+    simpleMap.set('WangWu', '王五');
+    console.log(simpleMap.get('WangWu'));
+    console.log(simpleMap.size);
+
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // false
+    // 4
+    ////////////////////////////////////////
+    console.log('//////////delete WangWu//////////');
+    simpleMap.delete('WangWu');
+    console.log(simpleMap.has('WangWu'));
+    console.log(simpleMap.size);
+
+    ////////////////////////////////////////
+    // OUTPUT
+    // 0
+    ////////////////////////////////////////
+    console.log('//////////clear//////////');
+    simpleMap.clear();
+    console.log(simpleMap.size);
+</script>
+
+</body>
+</html>

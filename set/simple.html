@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Simple Example</title>
+</head>
+<body>
+
+
+<script>
+
+    var simpleSet = new Set(['a', 'b']);
+
+    console.log('//////////for of keys//////////');
+    for (let item of simpleSet.keys()) {
+        console.log(item);
+    }
+
+    console.log('//////////for of values//////////');
+    for (let item of simpleSet.values()) {
+        console.log(item);
+    }
+
+    console.log('//////////for of entries//////////');
+    for (let item of simpleSet.entries()) {
+        console.log(item[0] + ': ' + item[1]);
+    }
+
+    console.log('//////////set forEach//////////');
+    simpleSet.forEach(function(item) {
+        console.log(item);
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple</title>
+</head>
+<body>
+
+<script>
+    class Person {
+
+        /**
+         * 构造函数
+         * @param name
+         */
+        constructor(name) {
+            this.name = name;
+        };
+
+        /**
+         * 计算
+         */
+        static staticMetho() {
+            console.log('I am a static method.');
+        };
+
+        /**
+         * 字符串表达
+         * @returns {string}
+         */
+        toString() {
+            return 'I am ' + this.name + '.';
+        };
+    }
+
+    Person.legs = 2;
+
+    Person.arms = 2;
+
+    var zhangSan = new Person('ZhangSan');
+
+    Person.staticMetho();
+
+
+    debugger;
+
+</script>
+
+</body>
+</html>

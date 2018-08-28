@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>find</title>
+</head>
+<body>
+
+
+<script>
+
+    var numbers = [1, 2, 3, 4, 5];
+
+    console.log('/////找不到，返回undefined/////');
+    var six = numbers.find(function(num, index, nums) {
+        return num === 6;
+    });
+
+    //undifined
+    console.log(six);
+
+
+    console.log('/////找到1个，返回/////');
+    var three = numbers.find(function(num, index, nums) {
+        //console.log('/////' + index + '/////');
+        //console.log('num=' + num);
+        //console.log('index=' + index);
+        //console.log('nums' + nums);
+        return num === 3;
+    });
+    console.log(three);
+
+
+    console.log('/////找到第1个匹配的值，直接返回，不再遍历/////');
+    var two = numbers.find(function(num, index, nums) {
+        console.log(num);
+        return num >= 2;
+    });
+    console.log(two);
+
+
+</script>
+
+</body>
+</html>

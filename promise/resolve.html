@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>resolve</title>
+</head>
+<body>
+
+
+<script>
+
+
+  const path = 'emp.jobs.id';
+  const parsedPaths = path.split('.');
+  for(let objName of parsedPaths) {
+    console.log(objName);
+  }
+
+  console.log(paths);
+
+
+
+
+  //--------------------------------------------------------------------------------
+  // 返回一个被立即resolve的
+  //--------------------------------------------------------------------------------
+  //OUTPUT:
+  // Hello
+  //--------------------------------------------------------------------------------
+  (function () {
+    const p = Promise.resolve('Hello');
+    p.then(function (s) {
+      console.log(s)
+    });
+  })();
+
+
+  //--------------------------------------------------------------------------------
+  // 需要注意，立即resolve的Promise对象，是在本轮【事件循环（event loop）】的结束时，而不是在下一轮【事件循环】的开始时。
+  // setTimeout是在下一轮【事件循环】的开始去执行。
+  //--------------------------------------------------------------------------------
+  //OUTPUT:
+  // one
+  // two
+  // three
+  //--------------------------------------------------------------------------------
+  (function () {
+
+    setTimeout(function () {
+      console.log('three');
+    }, 0);
+
+    Promise.resolve().then(function () {
+      console.log('two');
+    });
+
+    console.log('one');
+
+    // one
+    // two
+    // three
+
+  })();
+
+
+</script>
+
+
+</body>
+</html>

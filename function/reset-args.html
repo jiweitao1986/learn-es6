@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset Arguments</title>
+</head>
+<body>
+
+<dt>
+    <dl>Reset Arguments</dl>
+    <dd>reset 参数之后不允许再有其他参数；</dd>
+</dt>
+
+<dl>
+    <dt>rest arguments</dt>
+    <dd>声明函数参数的时候使用...args，其中args是一个数组</dd>
+    <dd>调用函数的时候，一次传入参数，则参数被写入args数组中</dd>
+    <dd>函数内部args数组，可获取通过该方式传递过来的参数</dd>
+</dl>
+
+
+<script>
+
+    function add(...values) {
+        let sum = 0;
+        for (let val of values) {
+            sum += val;
+        }
+        return sum;
+    }
+    console.log(add(1, 2, 3));
+
+
+    function intro({name, age}) {
+        console.log(name);
+        console.log(age);
+    }
+    intro('ZhangSan', 33);
+
+
+
+
+</script>
+
+</body>
+</html>

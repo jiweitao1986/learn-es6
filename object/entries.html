@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.entries()</title>
+</head>
+<body>
+
+<script>
+
+
+    var obj = { foo: "bar", baz: 42 };
+
+    // [ ['foo', 'bar'], ['baz', 42] ]
+    console.log(Object.entries(obj));
+
+
+    // 类数组对象
+    var obj = { 0: 'a', 1: 'b', 2: 'c' };
+
+    // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]
+    console.log(Object.entries(obj));
+
+
+    // 带有随机（非顺序）排列属性名的类数组对象
+    var an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+    // [ ['2', 'b'], ['7', 'c'], ['100', 'a'] ]
+    console.log(Object.entries(an_obj));
+
+
+    // getFoo是不可枚举属性
+    var my_obj = Object.create(
+        {},
+        {
+            getFoo: { value: function() { return this.foo; } }
+        }
+    );
+    my_obj.foo = "bar";
+    // [ ['foo', 'bar'] ]
+    console.log(Object.entries(my_obj));
+
+
+
+    // 非对象参数会被强行视为对象
+    // [ ['0', 'f'], ['1', 'o'], ['2', 'o'] ]
+    console.log(Object.entries("foo"));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    console.log('////////// makeIterator//////////');
+    var it = makeIterator(['a', 'b']);
+
+    // { value: "a", done: false }
+    it.next();
+
+    // { value: "b", done: false }
+    it.next();
+
+    // { value: undefined, done: true }
+    it.next();
+
+    //迭代器
+    function makeIterator(array) {
+        var nextIndex = 0;
+        return {
+            next: function() {
+                return nextIndex < array.length ?
+                    {value: array[nextIndex++], done: false} :
+                    {value: undefined, done: true};
+            }
+        };
+    }
+
+
+
+    console.log('////////// array iterator//////////');
+
+    let arr = ['a', 'b', 'c'];
+    let iter = arr[Symbol.iterator]();
+
+    console.log(iter.next()) // { value: 'a', done: false }
+    console.log(iter.next()) // { value: 'b', done: false }
+    console.log(iter.next()) // { value: 'c', done: false }
+    console.log(iter.next()) // { value: undefined, done: true }
+
+
+
+    console.log('////////// array iterator//////////');
+
+    class RangeIterator {
+        constructor(start, stop) {
+            this.value = start;
+            this.stop = stop;
+        }
+
+        [Symbol.iterator]() { return this; }
+
+        next() {
+            var value = this.value;
+            if (value < this.stop) {
+                this.value++;
+                return {done: false, value: value};
+            }
+            return {done: true, value: undefined};
+        }
+    }
+
+    function range(start, stop) {
+        return new RangeIterator(start, stop);
+    }
+
+    for (var value of range(0, 3)) {
+        console.log(value); // 0, 1, 2
+    }
+
+
+    function customIterator()
+    {
+        let value = 0;
+        return {
+            next: function() {
+                if (value < 10) {
+                    value ++;
+                    return value;
+                }
+            }
+        }
+    }
+
+
+
+    console.log('////////// custom iterator//////////');
+    var customObj = {
+        [Symbol.iterator]: function() {
+            let value = 0;
+            return {
+                next: function() {
+                    if (value < 5) {
+                        value ++;
+                        return {done: false, value: value};;
+                    }
+                    return {done: true, value: undefined};
+                }
+            }
+        }
+    }
+
+    for (let num of customObj) {
+        console.log(num);
+    }
+
+
+</script>
+
+</body>
+</html>

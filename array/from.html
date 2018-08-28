@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>from</title>
+</head>
+<body>
+
+
+<dt>
+    <dt>from</dt>
+    <dd> arguments NodeList</dd>
+</dt>
+
+<script>
+    (function(){
+        // NodeList对象
+        let ps = document.querySelectorAll('p');
+        Array.from(ps).forEach(function (p) {
+            console.log(p);
+        });
+
+        // arguments对象
+        function foo() {
+            var args = Array.from(arguments);
+            // ...
+        }
+    })();
+</script>
+
+</body>
+</html>

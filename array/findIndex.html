@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>findIndex</title>
+</head>
+<body>
+
+
+<script>
+
+    var numbers = [1, 2, 3, 4, 5];
+
+    console.log('/////找不到，返回-1/////');
+    var sixPos = numbers.findIndex(function(num, index, nums) {
+        return num === 6;
+    });
+
+    //undifined
+    console.log(sixPos);
+
+
+    console.log('/////找到1个，停止搜索，返回位置/////');
+    var threePos = numbers.findIndex(function(num, index, nums) {
+        //console.log('/////' + index + '/////');
+        //console.log('num=' + num);
+        //console.log('index=' + index);
+        //console.log('nums' + nums);
+        return num === 3;
+    });
+    console.log(threePos);
+
+
+    console.log('/////找到第1个匹配的值，停止搜索，返回位置/////');
+    var gtTowPos = numbers.findIndex(function(num, index, nums) {
+        console.log(num);
+        return num >= 2;
+    });
+    console.log(gtTowPos);
+
+    console.log('/////比较indexOf和findIndex对NaN的处理');
+    console.log([1, NaN, 2].indexOf(NaN));
+    console.log([1, NaN, 2].findIndex(num=>Object.is(NaN, num)));
+
+
+</script>
+
+</body>
+</html>

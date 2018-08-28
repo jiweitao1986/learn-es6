@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>simple</title>
+</head>
+<body>
+
+<script>
+
+    (function() {
+
+        console.log('-------------------- numberGenerator --------------------');
+        function* numberGenerator() {
+            yield 1;
+            yield 2;
+            yield 3;
+            return 4;
+        }
+        var numbers = numberGenerator();
+
+        // 单步执行
+        console.log(numbers.next());
+        console.log(numbers.next());
+        console.log(numbers.next());
+        console.log(numbers.next());
+
+
+        // for of 遍历
+        // 一旦next方法的返回对象的done属性为true，for...of循环就会中止，且不包含该返回对象，
+        // 所以上面代码的return语句返回的4，不包括在for...of循环之中。
+        var otherNumbers = numberGenerator();
+
+        // OUTPUT: []
+        for(let num of otherNumbers) {
+            console.log('num:' + num)
+        }
+
+    })();
+
+
+
+(function() {
+
+    console.log('-------------------- flat --------------------');
+
+    var arr = [1, [[2, 3], 4], [5, 6]];
+
+    var flat = function* (a) {
+        var length = a.length;
+        for (var i = 0; i < length; i++) {
+            var item = a[i];
+            if (typeof item !== 'number') {
+                yield* flat(item);
+            } else {
+                yield item;
+            }
+        }
+    };
+
+
+    // 1, 2, 3, 4, 5, 6
+    for (var f of flat(arr)) {
+        console.log(f);
+    }
+
+})();
+
+
+
+(function() {
+    console.log('-------------------- iterator --------------------');
+    function* numberGenerator() {
+        yield 1;
+        yield 2;
+        yield 3;
+        return 4;
+    }
+
+
+    console.log('---------- 将generator作为一个对象的迭代器 ----------');
+
+    var mockArray = {};
+    mockArray[Symbol.iterator] = numberGenerator;
+    console.log([...mockArray]);
+
+
+    console.log('---------- generator函数的返回值是一个具有迭代器的对象，迭代器是该函数----------');
+    var numbers = numberGenerator();
+    var arr = [...numbers];
+    console.log(arr);
+
+    console.log(numbers[Symbol.iterator]() === numbers);
+
+})();
+
+</script>
+
+</body>
+</html>
